@@ -31,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.Estado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProyectoId)
+                Proyecto
             </th>
             <th></th>
         </tr>
@@ -49,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+                    @Html.DisplayFor(modelItem => item.FechaVencimiento)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Prioridad)
@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProyectoId)
+                @Html.DisplayFor(modelItem => item.Proyecto.Nombre)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id  }) |

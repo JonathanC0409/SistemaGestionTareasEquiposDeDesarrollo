@@ -32,6 +32,11 @@ namespace SistemaGestionTareas.Api.Controllers
         public Usuario Get(int id)
         {
             var usuario = conexion.QuerySingle<Usuario>("SELECT * FROM Usuarios WHERE Id = @Id", new { Id = id });
+            var proyectos = usuario.Proyectos = conexion.Query<Proyecto>("SELECT * FROM Proyectos WHERE UsuarioId = @UsuarioId", new { UsuarioId = usuario.Id }).ToList();
+            foreach (var proyecto in proyectos)
+            {
+                proyecto.Tareas = conexion.Query<Tarea>("SELECT * FROM Tareas WHERE ProyectoId = @ProyectoId", new { ProyectoId = proyecto.Id }).ToList();
+            }
             return usuario;
         }
 

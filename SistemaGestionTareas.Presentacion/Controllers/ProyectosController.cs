@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Sistema.ConsumeApi;
 using SistemaGestionTareas.Modelos;
 
@@ -7,10 +9,11 @@ namespace SistemaGestionTareas.Presentacion.Controllers
 {
     public class ProyectosController : Controller
     {
+        [Authorize]
         // GET: ProyectosController
         public ActionResult Index()
         {
-            var proyectos = CRUD<Proyecto>.GetAll();    
+            var proyectos = CRUD<Proyecto>.GetAll();
             return View(proyectos);
         }
 
@@ -24,9 +27,18 @@ namespace SistemaGestionTareas.Presentacion.Controllers
         // GET: ProyectosController/Create
         public ActionResult Create()
         {
+            ViewBag.Usuarios = GetUsuarios();
             return View();
         }
-
+        private List<SelectListItem> GetUsuarios()
+        {
+            var usuarios = CRUD<Usuario>.GetAll();
+            return usuarios.Select(u => new SelectListItem
+            {
+                Value = u.Id.ToString(),
+                Text = $"{u.Nombre} {u.Apellido}"
+            }).ToList();
+        }
         // POST: ProyectosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -88,5 +100,6 @@ namespace SistemaGestionTareas.Presentacion.Controllers
                 return View();
             }
         }
+
     }
 }

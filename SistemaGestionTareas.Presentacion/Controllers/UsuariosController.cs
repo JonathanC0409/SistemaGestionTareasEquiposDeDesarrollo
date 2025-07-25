@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sistema.ConsumeApi;
 using SistemaGestionTareas.Modelos;
@@ -7,6 +8,7 @@ namespace SistemaGestionTareas.Presentacion.Controllers
 {
     public class UsuariosController : Controller
     {
+        [Authorize]
         // GET: UsuariosController
         public ActionResult Index()
         {
@@ -88,5 +90,7 @@ namespace SistemaGestionTareas.Presentacion.Controllers
                 return View();
             }
         }
+
+
     }
 }

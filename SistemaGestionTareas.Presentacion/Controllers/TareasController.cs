@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sistema.ConsumeApi;
 using SistemaGestionTareas.Modelos;
@@ -7,6 +8,7 @@ namespace SistemaGestionTareas.Presentacion.Controllers
 {
     public class TareasController : Controller
     {
+        [Authorize]
         // GET: TareasController
         public ActionResult Index()
         {
@@ -89,6 +91,7 @@ namespace SistemaGestionTareas.Presentacion.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Reporte(string orden)
         {
             var tareasLINQ = CRUD<Tarea>.GetAll().AsQueryable();

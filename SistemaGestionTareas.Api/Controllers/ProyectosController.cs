@@ -25,6 +25,10 @@ namespace SistemaGestionTareas.Api.Controllers
         public IEnumerable<Proyecto> Get()
         {
             var proyectos = conexion.Query<Proyecto>("SELECT * FROM Proyectos").ToList();
+            foreach(var proyecto in proyectos)
+            {
+               proyecto.Usuario = conexion.QuerySingle<Usuario>("SELECT * FROM Usuarios WHERE Id = @UsuarioId", new { UsuarioId = proyecto.UsuarioId });
+            }
             return proyectos;
         }
 
@@ -34,6 +38,7 @@ namespace SistemaGestionTareas.Api.Controllers
         {
             var proyecto = conexion.QuerySingle<Proyecto>("SELECT * FROM Proyectos WHERE Id = @Id", new { Id = id });
             proyecto.Tareas = conexion.Query<Tarea>("SELECT * FROM Tareas WHERE ProyectoId = @ProyectoId", new { ProyectoId = proyecto.Id }).ToList();
+            proyecto.Usuario = conexion.QuerySingle<Usuario>("SELECT * FROM Usuarios WHERE Id = @UsuarioId", new { UsuarioId = proyecto.UsuarioId });
             return proyecto;
         }
 

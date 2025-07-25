@@ -18,5 +18,52 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background: #a7bfb64e;
 }
+
+.home-container {
+    background: #86d2e6;
+    padding: 40px 0;
+    border-radius: 12px;
+   
+}
+
+a {
+    color: #258cfb;
+    text-decoration: none;
+    border-radius: 1px;
+    background-color: #e3f2fd;
+    margin-right: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px #0001;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: #f5f7fa;
+    font-weight: 600;
+    color: #333;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background-color: #f0f8ff;
+}
+ 
