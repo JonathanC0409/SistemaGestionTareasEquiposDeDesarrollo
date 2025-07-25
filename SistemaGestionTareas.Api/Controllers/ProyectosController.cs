@@ -33,6 +33,7 @@ namespace SistemaGestionTareas.Api.Controllers
         public Proyecto Get(int id)
         {
             var proyecto = conexion.QuerySingle<Proyecto>("SELECT * FROM Proyectos WHERE Id = @Id", new { Id = id });
+            proyecto.Tareas = conexion.Query<Tarea>("SELECT * FROM Tareas WHERE ProyectoId = @ProyectoId", new { ProyectoId = proyecto.Id }).ToList();
             return proyecto;
         }
 

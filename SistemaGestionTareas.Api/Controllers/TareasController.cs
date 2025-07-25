@@ -24,6 +24,10 @@ namespace SistemaGestionTareas.Api.Controllers
         public IEnumerable<Tarea> Get()
         {
             var tareas = conexion.Query<Tarea>("SELECT * FROM Tareas").ToList();
+            foreach (var tarea in tareas)
+            {
+                tarea.Proyecto = conexion.QuerySingle<Proyecto>("SELECT * FROM Proyectos WHERE Id = @ProyectoId", new { ProyectoId = tarea.ProyectoId });
+            }
             return tareas;
 
         }

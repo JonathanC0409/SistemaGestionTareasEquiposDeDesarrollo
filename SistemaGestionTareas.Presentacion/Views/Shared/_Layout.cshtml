@@ -31,6 +31,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Tareas" asp-action="Index">Tareas</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Tareas" asp-action="Reporte">Reporte de tareas</a>
+                        </li>
+                        <li class="collapse navbar-collapse" id="navbarNav">
+                            <form action="@Url.Action("BusquedaTareas", "Tareas")" method="post">
+                                <input type="text" name="name" placeholder="Tarea a buscar" aria-label="Search" />
+                                <button style="color:black" type="submit">Buscar</button>
+                            </form>
+
+                        </li>
+                        
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -1,0 +1,47 @@
+@model List<SistemaGestionTareas.Modelos.Tarea>
+
+@{
+    ViewData["Title"] = "Reporte de Tareas";
+}
+
+<h2>Reporte de Tareas</h2>
+
+<form method="get" asp-action="Reporte">
+    <div>
+        <label>Ordenar por:</label>
+        <select name="orden">
+            <option value="prioridad">Prioridad</option>
+            <option value="fecha">Fecha de Vencimiento</option>
+            <option value="estado">Estado</option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Proyecto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tarea in Model)
+        {
+            <tr>
+                <td>@tarea.Id</td>
+                <td>@tarea.Nombre</td>
+                <td>@tarea.Descripcion</td>
+                <td>@tarea.FechaVencimiento.ToShortDateString()</td>
+                <td>@tarea.Prioridad</td>
+                <td>@tarea.Estado</td>
+                <td>@tarea.Proyecto?.Nombre</td>
+            </tr>
+        }
+    </tbody>
+</table>

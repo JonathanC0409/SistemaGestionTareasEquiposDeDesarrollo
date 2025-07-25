@@ -88,5 +88,27 @@ namespace SistemaGestionTareas.Presentacion.Controllers
                 return View();
             }
         }
+
+        public ActionResult Reporte(string orden)
+        {
+            var tareasLINQ = CRUD<Tarea>.GetAll().AsQueryable();
+
+            tareasLINQ = orden switch
+            {
+                "prioridad" => tareasLINQ.OrderBy(t => t.Prioridad),
+                "fecha" => tareasLINQ.OrderBy(t => t.FechaVencimiento),
+                "estado" => tareasLINQ.OrderBy(t => t.Estado),
+                _ => tareasLINQ.OrderBy(t => t.Id)
+            };
+
+            if(orden == null)
+            {
+                var tareas = CRUD<Tarea>.GetAll();
+                return View(tareas);
+
+            }
+
+            return View(tareasLINQ.ToList());
+        }
     }
 }
